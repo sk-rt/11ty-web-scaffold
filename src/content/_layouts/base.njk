@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="{{site.language}}">
+    {% include "layouts/head.njk" %}
+    <body>
+        {% include "layouts/header.njk" %}
+        <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+            {{ content | safe }}
+        </main>
+
+        {% include "layouts/footer.njk" %}
+
+    </body>
+</html>
