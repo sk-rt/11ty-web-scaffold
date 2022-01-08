@@ -1,5 +1,5 @@
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "[scss]": {
     "editor.formatOnSave": true
   },
@@ -20,10 +20,9 @@
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
-    "source.fixAll.tslint": true,
     "source.fixAll": true
   },
   "emmet.includeLanguages": {
     "njk": "html"
-  },
+  }
 }

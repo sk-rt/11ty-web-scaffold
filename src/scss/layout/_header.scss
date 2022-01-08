@@ -1,0 +1,181 @@
+@use '../foundation/variables';
+@use 'sass:map';
+@use 'sass:math';
+
+/*********************************************************
+
+
+ Header
+ Gnavi
+
+
+**********************************************************/
+$fixed_zindex: 100;
+.l-header {
+  height: variables.$header_height;
+  @media #{map.get(variables.$max, md)} {
+    height: variables.$header_height_max-md;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+.l-header__inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: variables.$c_base;
+  z-index: $fixed_zindex;
+  height: variables.$header_height;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: stretch;
+  @media #{map.get(variables.$max, md)} {
+    height: variables.$header_height_max-md;
+  }
+}
+.l-header__site-name {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: stretch;
+  height: 100%;
+  position: relative;
+  @media #{map.get(variables.$max, md)} {
+    justify-content: flex-start;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  a {
+    flex: 0 0 auto;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    max-width: 100%;
+    @media #{map.get(variables.$max, md)} {
+      width: 300px;
+      max-width: calc(100% - 90px);
+    }
+    svg {
+      display: block;
+      @media #{map.get(variables.$max, md)} {
+        path {
+          stroke-width: 2.5px;
+        }
+      }
+    }
+  }
+}
+
+.l-header-nav {
+  position: fixed;
+  top: variables.$header_height;
+  left: 1em;
+  z-index: $fixed_zindex + 1;
+
+  @media #{map.get(variables.$max, md)} {
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    transition-property: opacity, transform, visibility;
+    transition-duration: 0.4s;
+    visibility: hidden;
+    top: 0.8em;
+    opacity: 0;
+    transform: translate(-40%, 0);
+    @at-root .is-drawer-shown & {
+      transform: translate(0);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+/****************************************
+
+         Drawer Button
+
+*****************************************/
+
+.l-header__drawer-button {
+  $size: 50px;
+
+  @media #{map.get(variables.$min, md)} {
+    display: none;
+  }
+  @media #{map.get(variables.$max, md)} {
+    position: fixed;
+    right: 5px;
+    top: #{(variables.$header_height_max-md - $size) * 0.5};
+    width: $size;
+    height: $size;
+    z-index: 12;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 16px 10px;
+    box-sizing: border-box;
+    margin-top: -1px;
+    display: block;
+    background-color: variables.$c_base;
+    color: variables.$c_text;
+    border-radius: 100%;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    z-index: $fixed_zindex + 1;
+  }
+  @at-root .is-drawer-shown & {
+    background-color: variables.$c_text;
+    color: variables.$c_base;
+  }
+}
+
+.l-header__drawer-button__inner {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  transition-property: height;
+  transition-duration: 0.3s;
+  @at-root .is-drawer-shown & {
+    height: 0px;
+  }
+  &:after,
+  &:before {
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    margin-top: -1px;
+    border-top: 2px solid;
+    transform-origin: 50% 50% 0;
+    transition-duration: 0.3s;
+    transition-property: transform, opacity;
+  }
+
+  &:before {
+    top: 0;
+    @at-root .is-drawer-shown & {
+      transition-delay: 0.3s;
+      transform: translate3d(0, 0, 0) rotate(-20deg);
+    }
+  }
+  &:after {
+    top: 100%;
+    @at-root .is-drawer-shown & {
+      transition-delay: 0.3s;
+      transform: translate3d(0, 0, 0) rotate(20deg);
+    }
+  }
+}

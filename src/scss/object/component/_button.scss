@@ -1,0 +1,74 @@
+@use 'sass:map';
+@use '../../foundation/variables';
+
+/*********************************************************
+
+
+Button
+
+
+**********************************************************/
+
+/****************************************
+
+         primary
+
+*****************************************/
+
+.c-button {
+  padding: 1em 2.2em;
+  display: inline-block;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  min-width: 320px;
+  box-sizing: border-box;
+  text-align: center;
+  border: 2px solid;
+
+  @media #{map.get(variables.$max, md)} {
+    padding: 0.7em 1em;
+    font-size: 1rem;
+    min-width: 150px;
+  }
+
+  &[disabled],
+  &.is-disabled,
+  &[aria-disabled='true'] {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  @media #{map.get(variables.$min, md)} and (hover:hover) {
+    transition: opacity 0.3s;
+    &:hover {
+      background-color: variables.$c_text;
+      color: variables.$c_base;
+      border-color: variables.$c_text;
+    }
+  }
+}
+.c-button__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 18px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  &.is-left {
+    left: 18px;
+    right: auto;
+  }
+  svg {
+    display: block;
+  }
+  @media #{map.get(variables.$max, md)} {
+    right: 12px;
+    &.is-left {
+      left: 12px;
+      right: auto;
+    }
+  }
+}

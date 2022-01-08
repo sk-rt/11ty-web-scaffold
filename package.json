@@ -5,10 +5,52 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "eleventy --serve",
-    "build": "eleventy"
+    "dev": "run-p serve:eleventy watch:webpack",
+    "build": "run-s build:eleventy build:webpack",
+    "serve:eleventy": "eleventy --serve",
+    "build:eleventy": "eleventy",
+    "watch:webpack": "webpack --watch",
+    "build:webpack": "NODE_ENV=production webpack --mode production",
+    "lint": "run-p -l -c --aggregate-output lint:*",
+    "lint:eslint": "eslint src/js/**/*",
+    "lint:prettier": "prettier --check src",
+    "fix": "run-s fix:prettier fix:eslint",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-p fix"
+    }
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1"
+    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy-img": "^1.0.0",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "mini-css-extract-plugin": "^2.4.6",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.5",
+    "postcss-loader": "^6.2.1",
+    "prettier": "^2.5.1",
+    "sass": "^1.47.0",
+    "sass-loader": "^12.4.0",
+    "svg-sprite-loader": "^6.0.11",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.4",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "destyle.css": "^3.0.2"
   }
 }

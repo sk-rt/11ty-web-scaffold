@@ -1,0 +1,45 @@
+@use 'sass:map';
+@use '../foundation/variables';
+
+/*********************************************************
+
+
+ Footer
+
+
+**********************************************************/
+
+.l-footer {
+  position: relative;
+  text-align: center;
+  padding: 70px 5%;
+  @media #{map.get(variables.$max, md)} {
+    padding: 30px 5%;
+  }
+}
+.l-footer__page-top {
+  width: 70px;
+  height: 70px;
+  border: 2px solid variables.$c_text;
+  margin: auto;
+  border-radius: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  @media (hover: hover) {
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: variables.$c_text;
+      color: variables.$c_base;
+    }
+  }
+  @media #{map.get(variables.$max, md)} {
+    width: 40px;
+    height: 40px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

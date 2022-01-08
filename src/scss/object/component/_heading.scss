@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use '../../foundation/variables';
+@use '../../object/utility/font';
+
+/*********************************************************
+
+
+Heading
+
+
+**********************************************************/
+/****************************************
+
+         heading
+
+*****************************************/
+.c-heading--lg {
+  font-size: 2.4rem;
+  margin-bottom: 1em;
+}
+.c-heading--md {
+  font-size: 1.6rem;
+  margin-bottom: 1em;
+}
+.c-heading--sm {
+  font-size: 1.2rem;
+  margin-bottom: 1em;
+}

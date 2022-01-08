@@ -1,0 +1,68 @@
+@use 'sass:map';
+/* -----------------------
+Font
+----------------------- */
+$default_font: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'ヒラギノ角ゴ ProN W3',
+  'Hiragino Kaku Gothic ProN', '游ゴシック', YuGothic, 'メイリオ', Meiryo, Roboto, sans-serif;
+$featured_font: 'Roboto Condensed', $default_font;
+/* -----------------------
+Color
+----------------------- */
+$c_text: #000;
+$c_base: #fff;
+$c_main: #00b7ff;
+$c_accent: rgb(217, 131, 32);
+$c_danger: rgba(255, 0, 0, 0.861);
+
+$c_base_gray: rgba($c_text, 0.1);
+$c_base_gray_light: rgba($c_text, 0.06);
+$c_base_gray_dark: rgba($c_text, 0.2);
+
+$c_line_gray: rgba($c_text, 0.1);
+
+/* -----------------------
+Breackpoint
+----------------------- */
+$bp_map: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
+$min: (
+  sm: '(min-width:' map.get($bp_map, sm) ')',
+  md: '(min-width:' map.get($bp_map, md) ')',
+  lg: '(min-width:' map.get($bp_map, lg) ')',
+  xl: '(min-width:' map.get($bp_map, xl) ')',
+);
+
+$max: (
+  sm: '(max-width:' map.get($bp_map, sm) - 0.2 ')',
+  md: '(max-width:' map.get($bp_map, md) - 0.2 ')',
+  lg: '(max-width:' map.get($bp_map, lg) - 0.2 ')',
+  xl: '(max-width:' map.get($bp_map, xl) - 0.2 ')',
+);
+
+/* -----------------------
+Content Size
+----------------------- */
+$content_size: (
+  xs: 600px,
+  sm: 800px,
+  md: 960px,
+  lg: 1120px,
+  xl: 1280px,
+) !default;
+/* -----------------------
+Gutter Size
+----------------------- */
+$gutter_lg: 4vw;
+$gutter_sm: 20px;
+$gutter_lg_max-md: 6vw;
+$gutter_sm_max-md: 10px;
+/* -----------------------
+gloval header Size
+----------------------- */
+$header_height: 90px;
+$header_height_max-md: 60px;
