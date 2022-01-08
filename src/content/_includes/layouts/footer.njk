@@ -1,3 +1,12 @@
-<footer>
-    Footer
+<footer id="footer" class="l-footer">
+    <a href="#" class="l-footer__page-top" aria-label="Page Top">
+        <svg width="16" height="16">
+            <use xlink:href="#icon_arrow"></use>
+        </svg>
+    </a>
+    <nav class="l-footer__nav">
+        {% for nav in navigation %}
+            <a class="l-footer__nav__item" href="{{ nav.url | url}}" >{{ nav.label }}</a>
+        {% endfor %}
+    </nav>
 </footer>

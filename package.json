@@ -29,6 +29,7 @@
     "@11ty/eleventy-img": "^1.0.0",
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
+    "@types/smoothscroll-polyfill": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
     "autoprefixer": "^10.4.2",
@@ -51,6 +52,7 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "destyle.css": "^3.0.2"
+    "destyle.css": "^3.0.2",
+    "smoothscroll-polyfill": "^0.4.4"
   }
 }

@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Top",
+    "url": "/",
+    "currentSlug": "/"
+  },
+  {
+    "label": "About",
+    "url": "/about/",
+    "currentSlug": "/about"
+  },
+  {
+    "label": "News",
+    "url": "/news/",
+    "currentSlug": "/news"
+  },
+  {
+    "label": "Contact",
+    "url": "/contact/",
+    "currentSlug": "/contact"
+  }
+]

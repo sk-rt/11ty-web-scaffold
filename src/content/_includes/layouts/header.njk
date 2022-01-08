@@ -1,6 +1,24 @@
-<header>
-    <h1 class="home">
-        <a href="{{ '/' | url }}">{{ metadata.title }}</a>
-    </h1>
+<header class="l-header">
+    <div class="l-header__inner">
+        <h1 class="l-header-site-name">
+            <a href="{{ '/' | url }}">
+                {% image "images/logo.svg", {
+                    alt: site.title,
+                    loading: 'auto'
+                } %}
+            </a>
+        </h1>
+        <button type="button" class="l-header__drawer-button" aria-label="Menu" data-drawer-control="drawer">
+            <span class="l-header__drawer-button__icon">
+                <i></i>
+            </span>
+        </button>
+        <nav class="l-header-nav" data-drawer-id="drawer">
+            {% for nav in navigation %}
+                <a class="l-header-nav__item" href="{{ nav.url | url}}" data-current-slug="{{ nav.currentSlug }}">{{ nav.label }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+   
     Current page: {{ page.url | url }}
 </header>

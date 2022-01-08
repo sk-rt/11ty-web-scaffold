@@ -80,25 +80,19 @@ Article Thumbnail
     padding-top: 100%;
   }
 }
-.c-thumbnail--poster-landscape {
+.c-thumbnail--landscape {
   @extend .c-thumbnail;
   &::before {
-    padding-top: math.div(364, 515) * 100%;
+    padding-top: math.div(2, 3) * 100%;
   }
 }
-.c-thumbnail--poster-portrait {
+.c-thumbnail--portrait {
   @extend .c-thumbnail;
   &::before {
-    padding-top: math.div(515, 364) * 100%;
+    padding-top: math.div(3, 2) * 100%;
   }
 }
 
-.c-thumbnail--long-banner {
-  @extend .c-thumbnail;
-  &::before {
-    padding-top: math.div(720, 240) * 100%;
-  }
-}
 .c-thumbnail--auto {
   @extend .c-thumbnail;
   &::before {

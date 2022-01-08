@@ -6,8 +6,6 @@
         <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
             {{ content | safe }}
         </main>
-
         {% include "layouts/footer.njk" %}
-
     </body>
 </html>
