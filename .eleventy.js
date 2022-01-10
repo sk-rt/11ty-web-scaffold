@@ -34,12 +34,30 @@ async function imageShortcode(src, param = {}) {
   return Image.generateHTML(metadata, imageAttributes);
 }
 /**
+ * breadCrumbsList
+ * @param {boolean|object} value
+ */
+const breadCrumbsList = (value) => {
+  if (!value) {
+    return;
+  }
+  let list = [{ path: '/', name: 'Top' }];
+  if (value.parents) {
+    list.push(...value.parents);
+  }
+  return list;
+};
+/**
  * Config
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/static': '/' });
   eleventyConfig.addNunjucksAsyncShortcode('image', imageShortcode);
   eleventyConfig.setUseGitIgnore(false);
+  eleventyConfig.addWatchTarget('dist/css/');
+  eleventyConfig.addWatchTarget('dist/js/');
+  eleventyConfig.addWatchTarget('src/scss/');
+  eleventyConfig.addNunjucksFilter('breadCrumbsList', breadCrumbsList);
 
   return {
     dir: {

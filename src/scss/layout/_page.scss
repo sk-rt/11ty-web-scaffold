@@ -16,11 +16,11 @@
 .l-page-header {
   padding-top: 3vw;
   padding-bottom: 3vw;
-  min-height: 80px;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  background: variables.$c_base_gray;
   @media #{map.get(variables.$max, md)} {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -28,7 +28,7 @@
 }
 
 .l-page-header__title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   @media #{map.get(variables.$max, md)} {
   }
 }
@@ -38,23 +38,12 @@
          Content
 
 *****************************************/
-.l-page-main {
-  padding-top: 6em;
-  padding-bottom: 6em;
-  @media #{map.get(variables.$max, md)} {
-    padding-top: 3em;
-    padding-bottom: 4em;
-    &.is-md__pt-none {
-      padding-top: 0;
-    }
-  }
-}
+
 .l-page-content {
-  padding-top: 5em;
-  padding-bottom: 7em;
+  padding-bottom: 6em;
+  padding-top: 3em;
   min-height: 400px;
   @media #{map.get(variables.$max, md)} {
-    padding-top: 1.5em;
     padding-bottom: 5em;
   }
 }
