@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 const environment = process.env.NODE_ENV || 'development';
 const isDevelopment = environment === 'development';
@@ -14,6 +15,9 @@ module.exports = {
   devtool: isDevelopment ? 'inline-source-map' : false,
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -43,7 +47,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: isDevelopment,
-              url: false,
+              url: true,
               importLoaders: 2,
             },
           },
@@ -65,6 +69,13 @@ module.exports = {
         ],
       },
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        generator: {
+          filename: 'images/[name][ext][query]',
+        },
+        type: 'asset/resource',
+      },
+      {
         test: /\.svg$/,
         use: [
           {
@@ -80,6 +91,19 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
+    }),
+    new ImageminPlugin({
+      disable: isDevelopment,
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      pngquant: {
+        quality: '70-85',
+      },
+      gifsicle: {
+        interlaced: false,
+        optimizationLevel: 10,
+        colors: 256,
+      },
+      svgo: {},
     }),
   ],
 };
