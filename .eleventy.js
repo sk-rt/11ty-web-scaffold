@@ -1,8 +1,13 @@
+const path = require('path');
+
+const appEnv = process.env.APP_ENV || 'local';
+require('dotenv').config({ path: path.resolve(__dirname, `.env.${appEnv}`) });
+
 /**
  * Image
  */
-const path = require('path');
 const Image = require('@11ty/eleventy-img');
+
 async function imageShortcode(src, param = {}) {
   const defaultParam = {
     alt: '',
@@ -33,20 +38,7 @@ async function imageShortcode(src, param = {}) {
   };
   return Image.generateHTML(metadata, imageAttributes);
 }
-/**
- * breadCrumbsList
- * @param {boolean|object} value
- */
-const breadCrumbsList = (value) => {
-  if (!value) {
-    return;
-  }
-  let list = [{ path: '/', name: 'Top' }];
-  if (value.parents) {
-    list.push(...value.parents);
-  }
-  return list;
-};
+
 /**
  * Config
  */
@@ -57,7 +49,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('dist/css/');
   eleventyConfig.addWatchTarget('dist/js/');
   eleventyConfig.addWatchTarget('src/scss/');
-  eleventyConfig.addNunjucksFilter('breadCrumbsList', breadCrumbsList);
+  eleventyConfig.addWatchTarget('src/js/');
 
   return {
     dir: {
@@ -65,5 +57,6 @@ module.exports = function (eleventyConfig) {
       output: 'dist',
       layouts: '_layouts',
     },
+    pathPrefix: process.env.BASE_DIR,
   };
 };

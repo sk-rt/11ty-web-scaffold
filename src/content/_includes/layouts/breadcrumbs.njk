@@ -1,14 +1,14 @@
-{% if breadCrumbs %}
+{% if breadCrumbsList %}
     <ul class="c-breadcrumbs">
-        {% if breadCrumbs %}
-            {% for item in breadCrumbs | breadCrumbsList %}
-                <li class="c-breadcrumbs__item">
+        {% for item in breadCrumbsList %}
+            <li class="c-breadcrumbs__item">
+                {% if item.path %}
                     <a href="{{ item.path | url }}" >{{ item.name }}</a>
-                </li>
-            {% endfor %}
-        {% endif %}
-        {% if title %}
-            <li class="c-breadcrumbs__item">{{ title }}</li>
-        {% endif %}
+                {% else %}
+                    {{ title }}
+                {% endif %}
+            </li>
+        {% endfor %}
+
     </ul>
 {% endif %}
