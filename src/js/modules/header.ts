@@ -1,8 +1,6 @@
 import { ToggleController } from '../lib/ToggleController';
-import { currentNavi } from './currentNavi';
 
 export const header = () => {
-  currentNavi();
   drawer();
 };
 /**

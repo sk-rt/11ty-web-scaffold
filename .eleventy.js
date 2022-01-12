@@ -1,13 +1,20 @@
 const path = require('path');
+const Image = require('@11ty/eleventy-img');
 
+/**
+ * Env
+ */
 const appEnv = process.env.APP_ENV || 'local';
 require('dotenv').config({ path: path.resolve(__dirname, `.env.${appEnv}`) });
 
 /**
  * Image
+ *
+ * @typedef {{alt:string, widths: (number|null)[], sizes: string, loading: 'lazy'| 'auto', class: string}} ImageParam
+ * @param {string} src
+ * @param {ImageParam} param
+ * @returns {string} html
  */
-const Image = require('@11ty/eleventy-img');
-
 async function imageShortcode(src, param = {}) {
   const defaultParam = {
     alt: '',
@@ -40,16 +47,34 @@ async function imageShortcode(src, param = {}) {
 }
 
 /**
+ * Current Class
+ *
+ * @param {string} navSlugRegExp - RegExp string. e.g. `^/about/.*`
+ * @param {string} currentPageUrl
+ * @param {string?} currentClass
+ * @returns {string}
+ */
+function currentClass(navSlugRegExp, currentPageUrl, currentClass = 'is-current') {
+  const currentPagePath = currentPageUrl.replace(process.env.BASE_DIR, '/');
+  const regex = new RegExp(navSlugRegExp);
+  if (currentPagePath.match(regex)) {
+    return currentClass;
+  }
+  return '';
+}
+/**
  * Config
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/static': '/' });
-  eleventyConfig.addNunjucksAsyncShortcode('image', imageShortcode);
   eleventyConfig.setUseGitIgnore(false);
   eleventyConfig.addWatchTarget('dist/css/');
   eleventyConfig.addWatchTarget('dist/js/');
   eleventyConfig.addWatchTarget('src/scss/');
   eleventyConfig.addWatchTarget('src/js/');
+
+  eleventyConfig.addShortcode('image', imageShortcode);
+  eleventyConfig.addShortcode('currentClass', currentClass);
 
   return {
     dir: {
