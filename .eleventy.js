@@ -73,7 +73,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('src/scss/');
   eleventyConfig.addWatchTarget('src/js/');
 
-  eleventyConfig.addShortcode('image', imageShortcode);
+  eleventyConfig.addNunjucksAsyncShortcode('image', imageShortcode);
   eleventyConfig.addShortcode('currentClass', currentClass);
 
   return {
