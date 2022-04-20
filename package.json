@@ -6,9 +6,11 @@
   "private": true,
   "scripts": {
     "dev": "run-p serve:eleventy watch:webpack",
-    "build": "run-s build:eleventy build:webpack",
+    "build:staging": "run-s clean:dist build:eleventy:staging build:webpack",
+    "build:production": "run-s clean:dist build:eleventy:production build:webpack",
     "serve:eleventy": "APP_ENV=local eleventy --serve",
-    "build:eleventy": "APP_ENV=production eleventy",
+    "build:eleventy:staging": "APP_ENV=staging eleventy",
+    "build:eleventy:production": "APP_ENV=production eleventy",
     "watch:webpack": "webpack --watch",
     "build:webpack": "NODE_ENV=production webpack --mode production",
     "lint": "run-p -l -c --aggregate-output lint:*",
