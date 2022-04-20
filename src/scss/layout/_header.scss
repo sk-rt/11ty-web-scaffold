@@ -101,7 +101,7 @@ $fixed_zindex: 100;
   align-items: center;
   padding: 0 0.5em;
   border-bottom: 1px solid transparent;
-  &.is-current {
+  &[aria-current='page'] {
     border-bottom-color: currentColor;
   }
   @media #{map.get(variables.$max, md)} {

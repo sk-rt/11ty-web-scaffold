@@ -2,21 +2,21 @@
   {
     "label": "Top",
     "url": "/",
-    "currentSlug": "^/$"
+    "currentRegExp": "^/$"
   },
   {
     "label": "About",
     "url": "/about/",
-    "currentSlug": "^/about/.*"
+    "currentRegExp": "^/about/.*"
   },
   {
     "label": "News",
     "url": "/news/",
-    "currentSlug": "^/news/.*"
+    "currentRegExp": "^/news/.*"
   },
   {
     "label": "Contact",
     "url": "/contact/",
-    "currentSlug": "^/contact/.*"
+    "currentRegExp": "^/contact/.*"
   }
 ]

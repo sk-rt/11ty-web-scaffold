@@ -15,7 +15,7 @@
         </button>
         <nav class="l-header-nav" data-drawer-id="drawer">
             {% for nav in navigation %}
-                <a class="l-header-nav__item {% currentClass nav.currentSlug, page.url %}" href="{{ nav.url | url}}">{{ nav.label }}</a>
+                <a class="l-header-nav__item" {% currentLinkAttr nav.currentRegExp, page.url %} href="{{ nav.url | url}}">{{ nav.label }}</a>
             {% endfor %}
         </nav>
     </div>
