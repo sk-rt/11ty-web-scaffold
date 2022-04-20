@@ -5,6 +5,7 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 const environment = process.env.NODE_ENV || 'development';
 const isDevelopment = environment === 'development';
+const outputDir = isDevelopment ? '.site' : 'dist';
 
 module.exports = {
   entry: {
@@ -20,7 +21,7 @@ module.exports = {
     },
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, outputDir),
     publicPath: '/',
     filename: 'js/[name].js',
   },
