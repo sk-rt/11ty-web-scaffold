@@ -2,8 +2,7 @@
  *  computed data
  * @see https://www.11ty.dev/docs/data-computed/#using-javascript
  */
-const Image = require('@11ty/eleventy-img');
-const path = require('path');
+const { getImageMeta } = require('../../../lib/imageShortCode');
 
 module.exports = {
   seo: {
@@ -56,7 +55,7 @@ module.exports = {
       return data.site.siteUrl + data.page.url;
     },
     /**
-     * Canonical url
+     * og:image url
      * @param {*} data global Data
      * @returns {string}
      */
@@ -65,17 +64,9 @@ module.exports = {
       if (!data.ogp) {
         return defaultImage;
       }
-
-      const imageList = await Image('src/assets/' + data.ogp, {
+      const imageList = await getImageMeta(data.ogp, {
         widths: [1200],
         formats: [null],
-        filenameFormat: function (id, src, width, format) {
-          const extension = path.extname(src);
-          const name = path.basename(src, extension);
-          return `${name}-ogp.${format}`;
-        },
-        urlPath: '/images/',
-        outputDir: './dist/images/',
       });
       if (!imageList || Object.values(imageList).length === 0) {
         return defaultImage;

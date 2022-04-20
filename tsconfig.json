@@ -2,12 +2,14 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "strict": true,
     "sourceMap": true,
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["esnext", "DOM"]
+    "lib": ["esnext", "DOM"],
+    "paths": { "@/*": ["src/*"] }
   },
   "include": ["src/js/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
